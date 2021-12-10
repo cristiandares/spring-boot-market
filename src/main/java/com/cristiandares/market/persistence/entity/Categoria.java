@@ -1,6 +1,7 @@
 package com.cristiandares.market.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "categorias")
@@ -16,6 +17,9 @@ public class Categoria {
 
     @Column( name = "estado")
     private Boolean estado;
+
+    @OneToMany(mappedBy = "categoria")
+    List<Producto> productos;
 
     public Integer getIdCategoria() {
         return idCategoria;

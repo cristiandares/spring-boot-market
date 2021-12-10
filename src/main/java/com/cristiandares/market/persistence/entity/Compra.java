@@ -1,7 +1,10 @@
 package com.cristiandares.market.persistence.entity;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "compras")
@@ -26,6 +29,13 @@ public class Compra {
 
     @Column(name = "estado")
     private String estado;
+
+    @ManyToOne
+    @JoinColumn(name = "id", insertable = false, updatable = false)
+    private Cliente clientes;
+
+    @OneToMany(mappedBy = "producto")
+    private List<ComprasProducto> productos;
 
     public Integer getIdCompra() {
         return idCompra;
